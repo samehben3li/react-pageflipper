@@ -1,3 +1,3 @@
-import { HTMLFlipBook } from './html-flip-book';
+import { HTMLFlipperBook } from './html-flip-book';
 
-export default HTMLFlipBook;
+export default HTMLFlipperBook;

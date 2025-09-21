@@ -56,15 +56,23 @@ export interface IBookState {
     mode: PageOrientation;
 }
 
-export interface FlipEvent {
-    data: number;
-    object: PageFlip;
+export interface EventDataMap {
+    flip: string | number;
+    changeOrientation: PageOrientation;
+    changeState: PageState;
+    init: IBookState;
+    update: IBookState;
 }
 
+export type FlipEvent<K extends keyof EventDataMap = keyof EventDataMap> = {
+    data: EventDataMap[K];
+    object: PageFlip;
+};
+
 export interface IEventProps {
-    onFlip?: (flipEvent: FlipEvent) => void;
-    onChangeOrientation?: (flipEvent: FlipEvent) => void;
-    onChangeState?: (flipEvent: FlipEvent) => void;
-    onInit?: (flipEvent: FlipEvent) => void;
-    onUpdate?: (flipEvent: FlipEvent) => void;
+    onFlip?: (e: FlipEvent<'flip'>) => void;
+    onChangeOrientation?: (e: FlipEvent<'changeOrientation'>) => void;
+    onChangeState?: (e: FlipEvent<'changeState'>) => void;
+    onInit?: (e: FlipEvent<'init'>) => void;
+    onUpdate?: (e: FlipEvent<'update'>) => void;
 }

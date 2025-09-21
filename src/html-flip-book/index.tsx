@@ -17,7 +17,7 @@ interface IProps extends IFlipSetting, IEventProps {
     renderOnlyPageLengthChange?: boolean;
 }
 
-const HTMLFlipBookForward = React.forwardRef(
+const HTMLFlipperBookForward = React.forwardRef(
     (props: IProps, ref: React.MutableRefObject<PageFlip>) => {
         const htmlElementRef = useRef<HTMLDivElement>(null);
         const childRef = useRef<HTMLElement[]>([]);
@@ -78,25 +78,27 @@ const HTMLFlipBookForward = React.forwardRef(
 
                 if (flip) {
                     if (props.onFlip) {
-                        flip.on('flip', (e: FlipEvent) => props.onFlip(e));
+                        flip.on('flip', (e: FlipEvent<'flip'>) => props.onFlip(e));
                     }
 
                     if (props.onChangeOrientation) {
-                        flip.on('changeOrientation', (e: FlipEvent) =>
+                        flip.on('changeOrientation', (e: FlipEvent<'changeOrientation'>) =>
                             props.onChangeOrientation(e)
                         );
                     }
 
                     if (props.onChangeState) {
-                        flip.on('changeState', (e: FlipEvent) => props.onChangeState(e));
+                        flip.on('changeState', (e: FlipEvent<'changeState'>) =>
+                            props.onChangeState(e)
+                        );
                     }
 
                     if (props.onInit) {
-                        flip.on('init', (e: FlipEvent) => props.onInit(e));
+                        flip.on('init', (e: FlipEvent<'init'>) => props.onInit(e));
                     }
 
                     if (props.onUpdate) {
-                        flip.on('update', (e: FlipEvent) => props.onUpdate(e));
+                        flip.on('update', (e: FlipEvent<'update'>) => props.onUpdate(e));
                     }
                 }
             };
@@ -127,4 +129,4 @@ const HTMLFlipBookForward = React.forwardRef(
     }
 );
 
-export const HTMLFlipBook = React.memo(HTMLFlipBookForward);
+export const HTMLFlipperBook = React.memo(HTMLFlipperBookForward);
