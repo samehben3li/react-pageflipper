@@ -1,3 +1,5 @@
+import { PageFlip } from 'page-flip';
+
 export type PageState = 'user_fold' | 'fold_corner' | 'flipping' | 'read';
 export type PageOrientation = 'portrait' | 'landscape';
 
@@ -54,10 +56,23 @@ export interface IBookState {
     mode: PageOrientation;
 }
 
+export interface EventDataMap {
+    flip: string | number;
+    changeOrientation: PageOrientation;
+    changeState: PageState;
+    init: IBookState;
+    update: IBookState;
+}
+
+export type FlipEvent<K extends keyof EventDataMap = keyof EventDataMap> = {
+    data: EventDataMap[K];
+    object: PageFlip;
+};
+
 export interface IEventProps {
-    onFlip?: (flipEvent: any) => void;
-    onChangeOrientation?: (flipEvent: any) => void;
-    onChangeState?: (flipEvent: any) => void;
-    onInit?: (flipEvent: any) => void;
-    onUpdate?: (flipEvent: any) => void;
+    onFlip?: (e: FlipEvent<'flip'>) => void;
+    onChangeOrientation?: (e: FlipEvent<'changeOrientation'>) => void;
+    onChangeState?: (e: FlipEvent<'changeState'>) => void;
+    onInit?: (e: FlipEvent<'init'>) => void;
+    onUpdate?: (e: FlipEvent<'update'>) => void;
 }
