@@ -1,14 +1,13 @@
 {
-    "name": "react-pageflip",
-    "version": "2.0.3",
-    "author": "oleg.litovski9@gmail.com",
+    "name": "react-pageflipper",
+    "version": "1.0.1",
+    "author": "sameh@ranadev.io",
     "license": "MIT",
     "description": "Simple React.js wrapper for StPageFlip library, for creating realistic and beautiful page turning effect",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Nodlik/react-pageflip.git"
+        "url": "https://github.com/samehben3li/react-pageflipper"
     },
-    "homepage": "https://nodlik.github.io/react-pageflip/",
     "main": "build/index.js",
     "module": "build/index.es.js",
     "files": [
@@ -17,7 +16,8 @@
     "scripts": {
         "build": "rollup -c",
         "build:dev": "rollup -c --watch",
-        "eslint": "eslint . --ext .ts,.tsx"
+        "eslint": "eslint . --ext .ts,.tsx",
+        "prettier": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\""
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^15.1.0",
@@ -25,7 +25,7 @@
         "@types/classnames": "^2.2.10",
         "@typescript-eslint/eslint-plugin": "^4.2.0",
         "@typescript-eslint/parser": "^4.2.0",
-        "autoprefixer": "^9.8.6",
+        "autoprefixer": "^10.4.21",
         "eslint": "^7.9.0",
         "eslint-config-airbnb": "^18.2.0",
         "eslint-config-prettier": "^6.11.0",
@@ -34,19 +34,19 @@
         "eslint-plugin-react": "^7.21.0",
         "eslint-plugin-react-hooks": "^4.1.2",
         "eslint-plugin-typescript": "^0.14.0",
-        "prettier": "^2.1.2",
+        "prettier": "^2.8.8",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "rollup": "^2.26.0",
         "rollup-plugin-peer-deps-external": "^2.2.3",
-        "rollup-plugin-postcss": "^3.1.8",
+        "rollup-plugin-postcss": "^4.0.2",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript2": "^0.27.2",
         "typescript": "^4.0.3",
-        "typescript-plugin-css-modules": "^2.7.0"
+        "typescript-plugin-css-modules": "^5.2.0"
     },
     "dependencies": {
-        "page-flip": "latest"
+        "page-flip": "^2.0.0"
     },
     "keywords": [
         "react",
