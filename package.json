@@ -1,6 +1,6 @@
 {
     "name": "react-pageflipper",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "sameh@ranadev.io",
     "license": "MIT",
     "description": "Simple React.js wrapper for StPageFlip library, for creating realistic and beautiful page turning effect",
@@ -43,6 +43,7 @@
         "rollup-plugin-postcss": "^4.0.2",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript2": "^0.27.2",
+        "standard-version": "^9.5.0",
         "typescript": "^4.0.3",
         "typescript-plugin-css-modules": "^5.2.0"
     },
