@@ -18,7 +18,9 @@ export const FlipperProvider: FC<{ children: ReactNode }> = ({ children }) => {
     // 🔹 Context values (methods)
     const contextValue = useMemo(
         () => ({
-            setPageFlipRef: (ref: PageFlip) => (pageFlipRef.current = ref),
+            setPageFlipRef: (ref: PageFlip | null) => {
+                pageFlipRef.current = ref;
+            },
             getPageCount: () => pageFlipRef.current?.getPageCount() || 0,
             getCurrentPageIndex: () => pageFlipRef.current?.getCurrentPageIndex() || 0,
             getOrientation: () => pageFlipRef.current?.getOrientation() || 'portrait',

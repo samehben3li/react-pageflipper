@@ -4,7 +4,7 @@ import type { IEventProps, IFlipSetting } from './settings';
 
 export type Corner = 'top' | 'bottom';
 
-export type ElementList = NodeListOf<HTMLElement> | HTMLElement[];
+export type ElementList = NodeListOf<Element> | Element[];
 
 export type PageFlipMethods = {
     getPageCount: () => number;
@@ -25,7 +25,7 @@ export type PageFlipMethods = {
 };
 
 export interface IFlipperContext extends PageFlipMethods {
-    setPageFlipRef: (ref: PageFlip) => void;
+    setPageFlipRef: (ref: PageFlip | null) => void;
 }
 
 export interface IFlipperBookProps extends IFlipSetting, IEventProps {
@@ -35,3 +35,5 @@ export interface IFlipperBookProps extends IFlipSetting, IEventProps {
     children: ReactNode;
     renderOnlyPageLengthChange?: boolean;
 }
+
+export type HTMLFlipperBookHandle = { pageFlip: () => PageFlip | undefined };

@@ -6,16 +6,15 @@ import React, {
     useRef,
     useState,
     forwardRef,
-    type MutableRefObject,
 } from 'react';
 
 import { PageFlip } from 'page-flip';
 import type { FlipEvent } from './settings';
-import type { IFlipperBookProps } from './types';
+import type { HTMLFlipperBookHandle, IFlipperBookProps } from './types';
 import { useFlipper } from './FlipperProvider';
 
-const HTMLFlipperBookForward = forwardRef(
-    (props: IFlipperBookProps, ref: MutableRefObject<PageFlip>) => {
+const HTMLFlipperBookForward = forwardRef<HTMLFlipperBookHandle, IFlipperBookProps>(
+    (props, ref) => {
         const htmlElementRef = useRef<HTMLDivElement>(null);
         const childRef = useRef<HTMLElement[]>([]);
         const pageFlip = useRef<PageFlip>();
@@ -24,9 +23,13 @@ const HTMLFlipperBookForward = forwardRef(
 
         const { setPageFlipRef } = useFlipper();
 
-        useImperativeHandle(ref, () => ({
-            pageFlip: () => pageFlip.current,
-        }));
+        useImperativeHandle(
+            ref,
+            () => ({
+                pageFlip: () => pageFlip.current,
+            }),
+            []
+        );
 
         // 🔹 Reset book if pages are removed
         const refreshOnPageDelete = useCallback(() => {
@@ -79,31 +82,31 @@ const HTMLFlipperBookForward = forwardRef(
         useEffect(() => {
             const setHandlers = () => {
                 const flip = pageFlip.current;
-                // TODO use if (!flip) return;
-                if (flip) {
-                    if (props.onFlip) {
-                        flip.on('flip', (e: FlipEvent<'flip'>) => props.onFlip(e));
-                    }
 
-                    if (props.onChangeOrientation) {
-                        flip.on('changeOrientation', (e: FlipEvent<'changeOrientation'>) =>
-                            props.onChangeOrientation(e)
-                        );
-                    }
+                if (!flip) {
+                    return;
+                }
 
-                    if (props.onChangeState) {
-                        flip.on('changeState', (e: FlipEvent<'changeState'>) =>
-                            props.onChangeState(e)
-                        );
-                    }
+                if (props.onFlip) {
+                    flip.on('flip', (e: FlipEvent<'flip'>) => props.onFlip(e));
+                }
 
-                    if (props.onInit) {
-                        flip.on('init', (e: FlipEvent<'init'>) => props.onInit(e));
-                    }
+                if (props.onChangeOrientation) {
+                    flip.on('changeOrientation', (e: FlipEvent<'changeOrientation'>) =>
+                        props.onChangeOrientation(e)
+                    );
+                }
 
-                    if (props.onUpdate) {
-                        flip.on('update', (e: FlipEvent<'update'>) => props.onUpdate(e));
-                    }
+                if (props.onChangeState) {
+                    flip.on('changeState', (e: FlipEvent<'changeState'>) => props.onChangeState(e));
+                }
+
+                if (props.onInit) {
+                    flip.on('init', (e: FlipEvent<'init'>) => props.onInit(e));
+                }
+
+                if (props.onUpdate) {
+                    flip.on('update', (e: FlipEvent<'update'>) => props.onUpdate(e));
                 }
             };
 
