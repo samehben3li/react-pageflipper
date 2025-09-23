@@ -1,3 +1,7 @@
-import { HTMLFlipperBook } from './html-flip-book';
+export * from './html-flip-book/FlipperProvider';
 
-export default HTMLFlipperBook;
+export * from './html-flip-book/types';
+
+export * from './html-flip-book/settings';
+
+export { HTMLFlipperBook as default } from './html-flip-book';

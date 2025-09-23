@@ -2,12 +2,13 @@ import { PageFlip } from 'page-flip';
 
 export type PageState = 'user_fold' | 'fold_corner' | 'flipping' | 'read';
 export type PageOrientation = 'portrait' | 'landscape';
+export type SizeType = 'fixed' | 'stretch';
 
 export interface IFlipSetting {
     /** Page number from which to start viewing */
     startPage: number;
     /** Whether the book will be stretched under the parent element or not */
-    size: 'fixed' | 'stretch';
+    size: SizeType;
 
     width: number;
     height: number;
