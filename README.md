@@ -95,13 +95,13 @@ function DemoBook() {
 
 **Available events:**
 
--   `onFlip: number` - triggered by page turning
--   `onChangeOrientation: ("portrait", "landscape")` - triggered when page orientation changes
--   `onChangeState: ("user_fold", "fold_corner", "flipping", "read")` - triggered when the state of the book changes
--   `onInit: ({page: number, mode: 'portrait', 'landscape'})` - triggered when the book is init and the start page is loaded. Listen (`on`) this event before using the "loadFrom..." methods
--   `onUpdate: ({page: number, mode: 'portrait', 'landscape'})` - triggered when the book pages are updated (using the "updateFrom..." methods)
+- `onFlip: (e: { data: number; object: PageFlip }) => void` — fired on page turn.
+- `onChangeOrientation: (e: { data: PageOrientation; object: PageFlip }) => void` — fired when orientation changes.
+- `onChangeState: (e: { data: 'user_fold' | 'fold_corner' | 'flipping' | 'read'; object: PageFlip }) => void` — fired when state changes.
+- `onInit: (e: { data: { page: number; mode: PageOrientation }; object: PageFlip }) => void` — fired after init and first page load. Subscribe before calling any `loadFrom*` methods.
+- `onUpdate: (e: { data: { page: number; mode: PageOrientation }; object: PageFlip }) => void` — fired after pages are updated via `updateFrom*` methods.
 
-Event object has two fields: `data: number | string` and `object: PageFlip`
+Event object has two fields: `data` (event payload) and `object: PageFlip` (the instance).
 
 ### Methods
 
@@ -143,25 +143,24 @@ function App() {
 
 #### 2. Using ref (Classic way, same as [react-pageflip](https://github.com/Nodlik/react-pageflip/blob/master/README.md#methods))
 
-
 **Available methods:**
 
 | Method name           | Parameters                                   | Return type               | Description                                                    |
 | --------------------- | -------------------------------------------- | ------------------------- | -------------------------------------------------------------- |
 | `getPageCount`        | ` `                                          | `number`                  | Get number of all pages                                        |
 | `getCurrentPageIndex` | ` `                                          | `number`                  | Get the current page number (starts at 0)                      |
-| `getOrientation`      | ` `                                          | `'portrait', 'landscape'` | Get the current orientation: portrait or landscape             |
+| `getOrientation`      | ` `                                          | `PageOrientation`         | Get the current orientation.                                   |
 | `getBoundsRect`       | ` `                                          | `PageRect`                | Get current book sizes and position                            |
 | `turnToPage`          | `pageNum: number`                            | `void`                    | Turn to the specified page number (without animation)          |
 | `turnToNextPage`      | ` `                                          | `void`                    | Turn to the next page (without animation)                      |
 | `turnToPrevPage`      | ` `                                          | `void`                    | Turn to the previous page (without animation)                  |
-| `flipNext`            | `corner: ['top', 'bottom']`                  | `void`                    | Turn to the next page (with animation)                         |
-| `flipPrev`            | `corner: ['top', 'bottom']`                  | `void`                    | Turn to the previous page (with animation)                     |
-| `flip`                | `pageNum: number, corner: ['top', 'bottom']` | `void`                    | Turn to the specified page (with animation)                    |
-| `loadFromImages`      | `images: ['path-to-image1.jpg', ...]`        | `void`                    | Load page from images                                          |
-| `loadFromHtml`        | `items: NodeListOf, HTMLElement[]`           | `void`                    | Load page from html elements                                   |
-| `updateFromHtml`      | `items: NodeListOf, HTMLElement[]`           | `void`                    | Update page from html elements                                 |
-| `updateFromImages`    | `images: ['path-to-image1.jpg', ...]`        | `void`                    | Update page from images                                        |
+| `flipNext`            | `corner?: 'top' \| 'bottom'`                  | `void`                    | Turn to the next page (animated).                              |
+| `flipPrev`            | `corner?: 'top' \| 'bottom'`                  | `void`                    | Turn to the previous page (animated).                          |
+| `flip`                | `pageNum: number, corner?: 'top' \| 'bottom'` | `void`                    | Turn to the specified page (animated).                         |
+| `loadFromImages`      | `images: string[]`                           | `void`                    | Load pages from images.                                        |
+| `loadFromHtml`        | `items: NodeListOf\<HTMLElement> \| HTMLElement[]` | `void`                | Load pages from HTML elements.                                 |
+| `updateFromHtml`      | `items: NodeListOf\<HTMLElement> \| HTMLElement[]` | `void`                | Update pages from HTML elements.                               |
+| `updateFromImages`    | `images: string[]`                           | `void`                    | Update pages from images.                                      |
 | `destroy`             | ` `                                          | `void`                    | Destructor. Removes Parent HTML Element and all event handlers |
 
 ### License
