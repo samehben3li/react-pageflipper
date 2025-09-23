@@ -56,18 +56,20 @@ To set configuration use these props:
 -   `height: number` - required
 -   `size: ("fixed", "stretch")` - default: `"fixed"` Whether the book will be stretched under the parent element or not
 -   `minWidth, maxWidth, minHeight, maxHeight: number` You must set threshold values ​​with size: `"stretch"`
--   `drawShadow: bool` - default: `true` Draw shadows or not when page flipping
+-   `drawShadow: boolean` - default: `true` Draw shadows or not when page flipping
 -   `flippingTime: number` (milliseconds) - default: `1000` Flipping animation time
--   `usePortrait: bool` - default: `true` Enable switching to portrait mode
+-   `usePortrait: boolean` - default: `true` Enable switching to portrait mode
 -   `startZIndex: number` - default: `0` Initial value to z-index
--   `autoSize: bool` - default: `true` If this value is true, the parent element will be equal to the size of the book
+-   `autoSize: boolean` - default: `true` If this value is true, the parent element will be equal to the size of the book
 -   `maxShadowOpacity: number [0..1]` - default: `1` Shadow intensity (1: max intensity, 0: hidden shadows)
 -   `showCover: boolean` - default: `false` If this value is true, the first and the last pages will be marked as hard and will be shown in single page mode
 -   `mobileScrollSupport: boolean` - default: `true` disable content scrolling when touching a book on mobile devices
 -   `swipeDistance: number` - default: `30` (px) minimum distance to detect swipe
 -   `clickEventForward: boolean` - default: `true` forwarding click events to the page children html elements (only for `a` and `button` tags)
 -   `useMouseEvents: boolean` - default: `true` using mouse and touch events to page flipping
--   `renderOnlyPageLengthChange: boolean` - default: `false` (NEW on 2.0.0) if this flag is active, the book will be updated and re-rendered ONLY if the number of pages has changed
+-   `renderOnlyPageLengthChange: boolean` - default: `false` (NEW on 2.0.0) if this flag is active, the book will be updated and re-rendered ONLY if the number of pages has changed.
+
+Note: when `size: "stretch"`, you should set reasonable thresholds for `minWidth`, `maxWidth`, `minHeight`, and `maxHeight`.
 
 ### Events
 
